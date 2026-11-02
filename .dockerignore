@@ -1,0 +1,6 @@
+node_modules
+sessions
+data/store
+temp
+.git
+.env
