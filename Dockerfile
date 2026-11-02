@@ -3,7 +3,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg git open
 RUN git config --global url."https://github.com/".insteadOf ssh://git@github.com/ && git config --global --add url."https://github.com/".insteadOf git@github.com: && git config --global url."https://".insteadOf git://
 WORKDIR /app
 COPY package.json ./
-RUN npm install --omit=dev --no-audit --no-fund --loglevel=error || (echo '=== npm failed, last log ===' && cat /root/.npm/_logs/*.log | tail -60 && exit 1)
+RUN npm install --omit=dev --legacy-peer-deps --no-audit --no-fund --loglevel=error || (echo '=== npm failed, last log ===' && cat /root/.npm/_logs/*.log | tail -60 && exit 1)
 COPY . .
 ENV NODE_ENV=production PORT=8000
 EXPOSE 8000
